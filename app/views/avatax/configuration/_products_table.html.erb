@@ -1,0 +1,25 @@
+<table id="products-table" class="table table-condensed table-striped mobile-data">
+  <thead>
+  <tr>
+    <th>Product name</th>
+    <th>Tax code</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% tax_codes.each do |tax_code| %>
+      <tr>
+        <td><%= tax_code[:productName] %></td>
+        <td><%= tax_code[:taxCode] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $('#products-table').dataTable({
+      "dom": "t",
+      "paging": false
+    });
+  });
+<% end %>

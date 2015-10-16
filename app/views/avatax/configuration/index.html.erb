@@ -1,0 +1,30 @@
+<div class="search">
+
+  <div class="column-block">
+
+    <h1>Configured products
+      <%= link_to '&nbsp;<i class="fa fa-plus-square"></i>'.html_safe, set_tax_code_configuration_path %>
+    </h1>
+
+    <%= render :partial => 'avatax/configuration/products_table', :locals => {:tax_codes => @tax_codes} %>
+
+  </div>
+
+  <hr/>
+
+  <div class="column-block">
+
+    <h1>Exempt accounts
+      <%= link_to '&nbsp;<i class="fa fa-plus-square"></i>'.html_safe, set_exemption_configuration_path %>
+    </h1>
+
+    <%= render :partial => 'avatax/configuration/exemptions_table', :locals => {:exemptions => @exemptions} %>
+
+  </div>
+
+
+  <hr/>
+
+  <h1><%= link_to 'Plugin configuration', plugin_configuration_path %></h1>
+
+</div>

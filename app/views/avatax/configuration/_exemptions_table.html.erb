@@ -1,0 +1,25 @@
+<table id="exemptions-table" class="table table-condensed table-striped mobile-data">
+  <thead>
+  <tr>
+    <th>Account ID</th>
+    <th>Customer Usage Type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% exemptions.each do |exemption| %>
+      <tr>
+        <td><%= exemption[:account_id] %></td>
+        <td><%= exemption[:customer_usage_type] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $('#exemptions-table').dataTable({
+      "dom": "t",
+      "paging": false
+    });
+  });
+<% end %>
