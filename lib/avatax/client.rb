@@ -17,11 +17,17 @@ module Killbill
             account.remove_custom_field(custom_field.custom_field_id, user, reason, comment, options) if custom_field.name == exemptionCustomFieldName
           end
 
-          # Set the exemption
-          custom_field = KillBillClient::Model::CustomField.new
-          custom_field.name = exemptionCustomFieldName
-          custom_field.value = customer_usage_type
-          account.add_custom_field(custom_field, user, reason, comment, options)
+          unless customer_usage_type.nil?
+            # Set the exemption
+            custom_field = KillBillClient::Model::CustomField.new
+            custom_field.name = exemptionCustomFieldName
+            custom_field.value = customer_usage_type
+            account.add_custom_field(custom_field, user, reason, comment, options)
+          end
+        end
+
+        def remove_exemption(account_id, user, reason, comment, options = {})
+          set_exemption(account_id, nil, user, reason, comment, options)
         end
 
         def get_tax_codes(options = {})
@@ -42,6 +48,11 @@ module Killbill
           path = "#{KILLBILL_AVATAX_PREFIX}/taxCodes"
           response = KillBillClient::API.post path, body, {}, options
           response.body
+        end
+
+        def remove_tax_code(product_name, user, reason, comment, options= {})
+          path = "#{KILLBILL_AVATAX_PREFIX}/taxCodes/#{product_name}"
+          KillBillClient::API.delete path, nil, {}, options
         end
 
       end

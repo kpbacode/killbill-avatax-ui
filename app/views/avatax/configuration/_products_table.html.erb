@@ -3,6 +3,7 @@
   <tr>
     <th>Product name</th>
     <th>Tax code</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -10,6 +11,9 @@
       <tr>
         <td><%= tax_code[:productName] %></td>
         <td><%= tax_code[:taxCode] %></td>
+        <td>
+          <%= link_to '<i class="fa fa-times"></i>'.html_safe, remove_tax_code_configuration_path(:product_name => tax_code[:productName]), :method => :delete %>
+        </td>
       </tr>
   <% end %>
   </tbody>
@@ -19,7 +23,12 @@
   $(document).ready(function() {
     $('#products-table').dataTable({
       "dom": "t",
-      "paging": false
+      "paging": false,
+      "columns": [
+        null,
+        null,
+        { "orderable": false }
+      ]
     });
   });
 <% end %>

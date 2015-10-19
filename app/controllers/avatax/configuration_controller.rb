@@ -28,6 +28,17 @@ module Avatax
       redirect_to :action => :index
     end
 
+    def remove_tax_code
+      ::Killbill::Avatax::AvataxClient.remove_tax_code(params.require(:product_name),
+                                                       options_for_klient[:username],
+                                                       params[:reason],
+                                                       params[:comment],
+                                                       options_for_klient)
+
+      flash[:notice] = 'Tax code successfully removed'
+      redirect_to :action => :index
+    end
+
     #
     # Exemptions
     #
@@ -44,7 +55,18 @@ module Avatax
                                                      options_for_klient)
 
       flash[:notice] = 'Exemption successfully saved'
-      redirect_to :action => :index, :notice => 'Exemption successfully saved'
+      redirect_to :action => :index
+    end
+
+    def remove_exemption
+      ::Killbill::Avatax::AvataxClient.remove_exemption(params.require(:account_id),
+                                                        options_for_klient[:username],
+                                                        params[:reason],
+                                                        params[:comment],
+                                                        options_for_klient)
+
+      flash[:notice] = 'Exemption successfully removed'
+      redirect_to :action => :index
     end
 
     #
