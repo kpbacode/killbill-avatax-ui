@@ -90,6 +90,8 @@ module Avatax
             @configuration[:license_key] = v
           when 'org.killbill.billing.plugin.avatax.companyCode'
             @configuration[:company_code] = v
+          when 'org.killbill.billing.plugin.avatax.commitDocuments'
+            @configuration[:commit_documents] = v == 'true'
         end
       end
     end
@@ -98,7 +100,8 @@ module Avatax
       plugin_config = "org.killbill.billing.plugin.avatax.url=#{avatax_url(params[:test] == '1')}
 org.killbill.billing.plugin.avatax.accountNumber=#{params.require(:account_number)}
 org.killbill.billing.plugin.avatax.licenseKey=#{params.require(:license_key)}
-org.killbill.billing.plugin.avatax.companyCode=#{params[:company_code]}"
+org.killbill.billing.plugin.avatax.companyCode=#{params[:company_code]}
+org.killbill.billing.plugin.avatax.commitDocuments=#{params[:commit_documents] == '1'}"
 
       KillBillClient::Model::Tenant.upload_tenant_plugin_config('killbill-avatax',
                                                                 plugin_config,
