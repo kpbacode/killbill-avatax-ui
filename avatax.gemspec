@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://www.killbill.io'
   s.summary     = 'Kill Bill Avatax UI mountable engine'
   s.description = 'Rails UI plugin for the Avatax plugin.'
+  s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*'] + %w(MIT-LICENSE Rakefile README.md)
   s.test_files = Dir['test/**/*']
