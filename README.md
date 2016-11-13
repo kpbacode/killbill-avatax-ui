@@ -4,8 +4,16 @@ Overview
 
 This Rails mountable engine allows you to manage your Avatax integration in Kill Bill.
 
-* See [killbill/killbill-avatax-plugin](https://github.com/killbill/killbill-avatax-plugin) to get started with the Avatax plugin.
-* See [killbill-admin-ui-standalone](https://github.com/killbill/killbill-admin-ui-standalone) to get start with the Kill Bill Admin UI.
+* See [killbill-avatax-plugin](https://github.com/killbill/killbill-avatax-plugin) to get started with the Avatax plugin.
+* See [killbill-admin-ui-standalone](https://github.com/killbill/killbill-admin-ui-standalone) to get started with the Kill Bill Admin UI.
+
+Kill Bill compatibility
+-----------------------
+
+| Avatax UI version | Kill Bill version |
+| ----------------: | ----------------: |
+| 0.0.y             | 0.16.z            |
+| 0.1.y             | 0.18.z            |
 
 Functionality
 -------------
