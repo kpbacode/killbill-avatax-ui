@@ -13,7 +13,7 @@ module Avatax
     #
 
     def set_tax_code
-      @products = KillBillClient::Model::Catalog.simple_catalog(options_for_klient).products.map(&:name)
+      @products = KillBillClient::Model::Catalog.simple_catalog(options_for_klient).last.products.map(&:name)
     end
 
     def do_set_tax_code

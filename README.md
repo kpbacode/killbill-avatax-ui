@@ -40,8 +40,12 @@ KillBillClient.api_secret = 'lazar'
 Then, simply run:
 
 ```
-bundle install
-export RAILS_ENV=development
-cd test/dummy
-rails server
+rails s
+```
+
+
+To run tests:
+
+```
+rails t
 ```
