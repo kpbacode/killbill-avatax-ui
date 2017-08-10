@@ -7,7 +7,7 @@ mysql -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root')"
 mysql -uroot -proot -e 'create database killbill;'
 
 curl 'http://docs.killbill.io/0.18/ddl.sql' | mysql -uroot -proot killbill
-curl https://raw.githubusercontent.com/killbill/killbill-avatax-plugin/master/src/main/resources/org/killbill/billing/plugin/analytics/ddl.sql | mysql -uroot -proot killbill
+curl https://raw.githubusercontent.com/killbill/killbill-avatax-plugin/master/src/main/resources/ddl.sql | mysql -uroot -proot killbill
 
 gem install kpm
 
