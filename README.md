@@ -13,7 +13,8 @@ Kill Bill compatibility
 | Avatax UI version | Kill Bill version |
 | ----------------: | ----------------: |
 | 0.0.y             | 0.16.z            |
-| 0.1.y             | 0.18.z            |
+| 0.1.y             | 0.18.z (Rails 4)  |
+| 0.2.y             | 0.18.z (Rails 5)  |
 
 Functionality
 -------------
