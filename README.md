@@ -15,7 +15,8 @@ Kill Bill compatibility
 | 0.0.y             | 0.16.z            |
 | 0.1.y             | 0.18.z (Rails 4)  |
 | 0.2.y             | 0.18.z (Rails 5)  |
-| 1.x.y             | 0.19.z            |
+| 1.x.y             | 0.20.z            |
+| 2.x.y             | 0.22.z            |
 
 Functionality
 -------------
