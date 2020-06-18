@@ -82,8 +82,6 @@ module Avatax
       config.values.first.split.each do |property|
         k, v = property.split('=')
         case k
-          when 'org.killbill.billing.plugin.avatax.url'
-            @configuration[:test] = avatax_url(true) == v
           when 'org.killbill.billing.plugin.avatax.accountId'
             @configuration[:account_id] = v
           when 'org.killbill.billing.plugin.avatax.licenseKey'
@@ -97,28 +95,30 @@ module Avatax
     end
 
     def update_plugin_configuration
+      plugin_config = "org.killbill.billing.plugin.avatax.accountId=#{params.require(:account_id)}
+org.killbill.billing.plugin.avatax.licenseKey=#{params.require(:license_key)}\n"
+      plugin_config << "org.killbill.billing.plugin.avatax.commitDocuments=#{params[:commit_documents] == '1'}\n"
+      plugin_config << "org.killbill.billing.plugin.avatax.companyCode=#{params[:company_code]}\n" unless params[:company_code].blank?
+
       # Merge the new values with the current config. The config will likely contain additional fields that we don't want to clobber.
       # The user should really use the more powerful /admin_tenants screen - this plugin screen was just created
       # to be able to pass the initial AvaTax certification.
       current_config = KillBillClient::Model::Tenant.get_tenant_plugin_config('killbill-avatax', options_for_klient)
 
-      plugin_config = ''
-      (current_config.values|| ['']).first.split.each do |property|
+      (current_config.values || ['']).first.split.each do |property|
         k, v = property.split('=')
         plugin_config << case k
-        when 'org.killbill.billing.plugin.avatax.url'
-          "org.killbill.billing.plugin.avatax.url=#{avatax_url(params[:test] == '1')}\n"
-        when 'org.killbill.billing.plugin.avatax.accountId'
-          "org.killbill.billing.plugin.avatax.accountId=#{params.require(:account_id)}\n"
-        when 'org.killbill.billing.plugin.avatax.licenseKey'
-          "org.killbill.billing.plugin.avatax.licenseKey=#{params.require(:license_key)}\n"
-        when 'org.killbill.billing.plugin.avatax.companyCode'
-          "org.killbill.billing.plugin.avatax.companyCode=#{params[:company_code]}\n"
-        when 'org.killbill.billing.plugin.avatax.commitDocuments'
-          "org.killbill.billing.plugin.avatax.commitDocuments=#{params[:commit_documents] == '1'}\n"
-        else
-          "#{k}=#{v}\n"
-        end
+                         when 'org.killbill.billing.plugin.avatax.accountId'
+                           next
+                         when 'org.killbill.billing.plugin.avatax.licenseKey'
+                           next
+                         when 'org.killbill.billing.plugin.avatax.companyCode'
+                           next
+                         when 'org.killbill.billing.plugin.avatax.commitDocuments'
+                           next
+                         else
+                           "#{k}=#{v}\n"
+                         end
       end
 
       KillBillClient::Model::Tenant.upload_tenant_plugin_config('killbill-avatax',
@@ -133,10 +133,6 @@ module Avatax
     end
 
     private
-
-    def avatax_url(test)
-      "https://#{test ? 'development' : 'avatax'}.avalara.net"
-    end
 
     def exempt_accounts(offset = 0, limit = 100)
       custom_field_value = 'customerUsageType'

@@ -28,15 +28,6 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <%= label_tag :test, 'Test mode', :class => 'control-label' do %>
-              <%= check_box_tag :test, '1', @configuration[:test] %>Test mode?
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
         <%= submit_tag 'Save', :class => 'btn btn-default' %>
       </div>
     </div>
