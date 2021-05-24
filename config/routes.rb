@@ -1,8 +1,9 @@
-Avatax::Engine.routes.draw do
+# frozen_string_literal: true
 
+Avatax::Engine.routes.draw do
   root to: 'configuration#index'
 
-  resources :configuration, :only => [:index]
+  resources :configuration, only: [:index]
 
   scope '/configuration' do
     match '/tax_code' => 'configuration#set_tax_code', :via => :get, :as => 'set_tax_code_configuration'
@@ -16,5 +17,4 @@ Avatax::Engine.routes.draw do
     match '/plugin' => 'configuration#plugin_configuration', :via => :get, :as => 'plugin_configuration'
     match '/plugin' => 'configuration#update_plugin_configuration', :via => :post, :as => 'update_plugin_configuration'
   end
-
 end

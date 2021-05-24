@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Dependencies
 #
 # Sigh. Rails autoloads the gems specified in the Gemfile and nothing else.
@@ -12,7 +14,6 @@ require 'killbill_client'
 
 module Avatax
   class Engine < ::Rails::Engine
-
     isolate_namespace Avatax
   end
 end

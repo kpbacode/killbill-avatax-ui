@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class NavigationTest < ActionDispatch::IntegrationTest
-
   include Avatax::Engine.routes.url_helpers
 
   test 'can see the main configuration page' do
@@ -14,4 +15,3 @@ class NavigationTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 end
-

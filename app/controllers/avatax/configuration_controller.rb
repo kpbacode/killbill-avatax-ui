@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'avatax/client'
 
 module Avatax
   class ConfigurationController < EngineController
-
     def index
       @tax_codes = ::Killbill::Avatax::AvataxClient.get_tax_codes(options_for_klient)
       @exemptions = exempt_accounts
@@ -25,7 +26,7 @@ module Avatax
                                                     options_for_klient)
 
       flash[:notice] = 'Tax code successfully saved'
-      redirect_to :action => :index
+      redirect_to action: :index
     end
 
     def remove_tax_code
@@ -36,15 +37,14 @@ module Avatax
                                                        options_for_klient)
 
       flash[:notice] = 'Tax code successfully removed'
-      redirect_to :action => :index
+      redirect_to action: :index
     end
 
     #
     # Exemptions
     #
 
-    def set_exemption
-    end
+    def set_exemption; end
 
     def do_set_exemption
       ::Killbill::Avatax::AvataxClient.set_exemption(params.require(:account_id),
@@ -55,7 +55,7 @@ module Avatax
                                                      options_for_klient)
 
       flash[:notice] = 'Exemption successfully saved'
-      redirect_to :action => :index
+      redirect_to action: :index
     end
 
     def remove_exemption
@@ -66,7 +66,7 @@ module Avatax
                                                         options_for_klient)
 
       flash[:notice] = 'Exemption successfully removed'
-      redirect_to :action => :index
+      redirect_to action: :index
     end
 
     #
@@ -82,14 +82,14 @@ module Avatax
       config.values.first.split.each do |property|
         k, v = property.split('=')
         case k
-          when 'org.killbill.billing.plugin.avatax.accountId'
-            @configuration[:account_id] = v
-          when 'org.killbill.billing.plugin.avatax.licenseKey'
-            @configuration[:license_key] = v
-          when 'org.killbill.billing.plugin.avatax.companyCode'
-            @configuration[:company_code] = v
-          when 'org.killbill.billing.plugin.avatax.commitDocuments'
-            @configuration[:commit_documents] = v == 'true'
+        when 'org.killbill.billing.plugin.avatax.accountId'
+          @configuration[:account_id] = v
+        when 'org.killbill.billing.plugin.avatax.licenseKey'
+          @configuration[:license_key] = v
+        when 'org.killbill.billing.plugin.avatax.companyCode'
+          @configuration[:company_code] = v
+        when 'org.killbill.billing.plugin.avatax.commitDocuments'
+          @configuration[:commit_documents] = v == 'true'
         end
       end
     end
@@ -129,7 +129,7 @@ org.killbill.billing.plugin.avatax.licenseKey=#{params.require(:license_key)}\n"
                                                                 options_for_klient)
 
       flash[:notice] = 'Configuration successfully saved'
-      redirect_to :action => :index
+      redirect_to action: :index
     end
 
     private
@@ -138,18 +138,18 @@ org.killbill.billing.plugin.avatax.licenseKey=#{params.require(:license_key)}\n"
       custom_field_value = 'customerUsageType'
 
       KillBillClient::Model::CustomField.find_in_batches_by_search_key(custom_field_value, offset, limit, options_for_klient)
-          .select { |cf| cf.name == custom_field_value && cf.object_type == 'ACCOUNT' }
-          .map { |cf| {:account_id => cf.object_id, :customer_usage_type => cf.value} }
+                                        .select { |cf| cf.name == custom_field_value && cf.object_type == 'ACCOUNT' }
+                                        .map { |cf| { account_id: cf.object_id, customer_usage_type: cf.value } }
     end
 
     def options_for_klient
       user = current_tenant_user
       {
-          :username => user[:username],
-          :password => user[:password],
-          :session_id => user[:session_id],
-          :api_key => user[:api_key],
-          :api_secret => user[:api_secret]
+        username: user[:username],
+        password: user[:password],
+        session_id: user[:session_id],
+        api_key: user[:api_key],
+        api_secret: user[:api_secret]
       }
     end
   end

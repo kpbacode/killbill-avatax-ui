@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Avatax
   class EngineController < ApplicationController
-
     layout :get_layout
 
     def get_layout
@@ -13,6 +14,5 @@ module Avatax
       user = current_user if respond_to?(:current_user)
       Avatax.current_tenant_user.call(session, user)
     end
-
   end
 end
