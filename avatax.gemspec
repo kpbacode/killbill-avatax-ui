@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '~> 6.0.0'
   s.add_dependency 'rails', '~> 5.2.8.1'
   s.add_dependency 'js-routes', '~> 2.2.4'
-  s.add_dependency 'jquery-rails', '~> 4.5.0'
+  s.add_dependency 'jquery-rails', '~> 4.4.0'
   s.add_dependency 'jquery-datatables-rails', '~> 3.4.0'
   # See https://github.com/seyhunak/twitter-bootstrap-rails/issues/897
   s.add_dependency 'font-awesome-rails', '~> 4.7.0.8'
