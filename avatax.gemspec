@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '~> 6.0.0'
   s.add_dependency 'rails', '~> 5.2.8.1'
   s.add_dependency 'js-routes', '~> 2.2.4'
+  # see https://stackoverflow.com/questions/73115322/rails6-post-deployment-application-shows-syntaxerror-unexpected-token-export
   s.add_dependency 'jquery-rails', '~> 4.4.0'
   s.add_dependency 'jquery-datatables-rails', '~> 3.4.0'
   # See https://github.com/seyhunak/twitter-bootstrap-rails/issues/897
