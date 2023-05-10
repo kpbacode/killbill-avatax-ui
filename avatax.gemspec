@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   s.add_dependency 'sass-rails'
-  s.add_dependency 'rails', '~> 7.0'
+  s.add_dependency 'rails', '~> 6.1.7'
   s.add_dependency 'js-routes'
   # see https://stackoverflow.com/questions/73115322/rails6-post-deployment-application-shows-syntaxerror-unexpected-token-export
   s.add_dependency 'jquery-rails'
